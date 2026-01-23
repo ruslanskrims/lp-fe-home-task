@@ -10,7 +10,7 @@ function BirthdayList() {
   const [isButtonVisible, setIsButtonVisible] = useState(true);
   const { isLoading, birthdayData, error } = useFetchOnThisDayData(isButtonVisible);
   return (
-    <div className="birthday-list__container">
+    <div className="container birthday-list__container">
       {isButtonVisible ? (
         <Button
           onClick={() => setIsButtonVisible(!isButtonVisible)}
