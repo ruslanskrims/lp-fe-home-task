@@ -1,0 +1,21 @@
+.button {
+  display: flex;
+  width: 280px;
+  height: 48px;
+  padding: 0 45px;
+  justify-content: center;
+  align-items: center;
+  border-radius: 8px;
+  background: #fefefe;
+  box-shadow: 0 2px 4px 0 rgba(20, 130, 204, 0.15);
+  border: 0;
+  border-radius: calc(var(--t-radius) - var(--t-compensator));
+  color: #000c;
+  cursor: pointer;
+  font: inherit;
+
+  &:hover {
+    background: #c9eefa91;
+    border-color: transparent;
+  }
+}

@@ -1,12 +1,12 @@
-import { useState } from 'react';
+import Header from './components/Header/Header';
+import BirthdayList from './features/birthdays/BirthdayList';
 import './App.css';
 
 function App() {
-  const [count, setCount] = useState(0);
-
   return (
     <div className="App">
-      <h1>LevelPath Home Task</h1>
+      <Header />
+      <BirthdayList />
     </div>
   );
 }
