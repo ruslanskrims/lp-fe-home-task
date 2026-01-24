@@ -19,6 +19,7 @@ function BirthdayList() {
 
   return (
     <div className="container birthday-list__container">
+      <div className="birthday-list__title">Today's Birthdays</div>
       {isButtonVisible ? (
         <Button
           onClick={() => setIsButtonVisible(!isButtonVisible)}
@@ -40,6 +41,7 @@ function BirthdayList() {
               <BirthdayItem
                 key={index}
                 text={generalInfo?.text}
+                year={generalInfo?.year}
               />
             ))}
           </ul>

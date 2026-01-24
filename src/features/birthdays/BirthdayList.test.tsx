@@ -24,8 +24,8 @@ describe('BirthdayList', () => {
       Promise.resolve({
         ok: true,
         json: () => Promise.resolve(mockBirthdayData)
-      })
-    ) as any;
+      } as Response)
+    );
   });
 
   it('renders the list', async () => {

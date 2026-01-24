@@ -6,6 +6,13 @@
     padding-top: 3rem;
   }
 
+  &__title {
+    font-size: 1.5rem;
+    font-weight: 500;
+    margin-bottom: 1.5rem;
+    color: #333;
+  }
+
   &__items {
     list-style: none;
     padding: 0;
