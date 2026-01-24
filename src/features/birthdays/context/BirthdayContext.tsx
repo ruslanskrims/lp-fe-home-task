@@ -1,4 +1,4 @@
-import { createContext, useContext, useState, ReactNode, useCallback, useEffect } from 'react';
+import { createContext, useContext, useState, ReactNode, useEffect } from 'react';
 import { GeneralInfo } from '../types';
 import { useFetchOnThisDayData } from '../hooks/useFetchOnThisDayData';
 
@@ -17,20 +17,22 @@ export const BirthdayContext = createContext<BirthdayContextType | undefined>(un
 export function BirthdayProvider({ children }: { children: ReactNode }) {
   const [isButtonVisible, setIsButtonVisible] = useState(true);
   const [sortedBy, setSortedBy] = useState<[keyof GeneralInfo, 'asc' | 'desc']>(['year', 'desc']);
-  const { isLoading, birthdayData, error, setBirthdayData } =
+  const { isLoading, birthdaysData, error, setBirthdaysData } =
     useFetchOnThisDayData(isButtonVisible);
 
   useEffect(() => {
-    setBirthdayData(prevBirthdayData =>
-      [...prevBirthdayData].sort((a, b) => {
-        if (sortedBy[1] === 'asc') {
-          return a.year - b.year;
-        } else {
-          return b.year - a.year;
-        }
-      })
-    );
-  }, [sortedBy]);
+    if (birthdaysData.length > 0) {
+      setBirthdaysData(prevBirthdaysData =>
+        [...prevBirthdaysData].sort((a, b) => {
+          if (sortedBy[1] === 'asc') {
+            return a.year - b.year;
+          } else {
+            return b.year - a.year;
+          }
+        })
+      );
+    }
+  }, [sortedBy, birthdaysData.length]);
 
   const handleToggleSort = () => {
     if (sortedBy[1] === 'asc') {
@@ -43,7 +45,7 @@ export function BirthdayProvider({ children }: { children: ReactNode }) {
   return (
     <BirthdayContext.Provider
       value={{
-        birthdaysData: birthdayData,
+        birthdaysData,
         isLoading,
         error,
         sortOrder: sortedBy,

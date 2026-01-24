@@ -37,11 +37,11 @@ function BirthdayList() {
             sortedBy={sortOrder[1]}
           />
           <ul className="birthday-list__items">
-            {birthdaysData?.map((generalInfo: GeneralInfo, index: number) => (
+            {birthdaysData?.map(({ text, year }: GeneralInfo, index: number) => (
               <BirthdayItem
                 key={index}
-                text={generalInfo?.text}
-                year={generalInfo?.year}
+                text={text}
+                year={year}
               />
             ))}
           </ul>

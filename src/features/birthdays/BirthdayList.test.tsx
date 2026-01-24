@@ -2,21 +2,8 @@ import { describe, it, expect, vi, beforeEach } from 'vitest';
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import BirthdayList from './BirthdayList';
-
-const mockBirthdayData = {
-  births: [
-    {
-      text: 'Julio Enciso, Paraguayan footballer',
-      pages: [],
-      year: 2004
-    },
-    {
-      text: 'Joško Gvardiol, Croatian footballer',
-      pages: [],
-      year: 2002
-    }
-  ]
-};
+import { mockBirthdayData } from '../../mocks/birthdays/mockBirthdayData';
+import { BirthdayProvider } from './context/BirthdayContext';
 
 describe('BirthdayList', () => {
   beforeEach(() => {
@@ -28,13 +15,22 @@ describe('BirthdayList', () => {
     );
   });
 
-  it('renders the list', async () => {
-    render(<BirthdayList />);
+  it('renders the birthday list', async () => {
+    render(
+      <BirthdayProvider>
+        <BirthdayList />
+      </BirthdayProvider>
+    );
+
     expect(screen.getByText("Get today's birthday list")).toBeInTheDocument();
 
     await userEvent.click(screen.getByText("Get today's birthday list"));
 
-    expect(await screen.findByText('Julio Enciso, Paraguayan footballer')).toBeInTheDocument();
-    expect(screen.getByText('Joško Gvardiol, Croatian footballer')).toBeInTheDocument();
+    expect(
+      await screen.findByText('Name: Julio Enciso, Paraguayan footballer. Year: 2004')
+    ).toBeInTheDocument();
+    expect(
+      screen.getByText('Name: Joško Gvardiol, Croatian footballer. Year: 2002')
+    ).toBeInTheDocument();
   });
 });

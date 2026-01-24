@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { EventsOnThisDay, GeneralInfo } from '../types';
 
 export const useFetchOnThisDayData = (isButtonVisible: boolean) => {
-  const [birthdayData, setBirthdayData] = useState<GeneralInfo[]>([]);
+  const [birthdaysData, setBirthdaysData] = useState<GeneralInfo[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
@@ -19,7 +19,7 @@ export const useFetchOnThisDayData = (isButtonVisible: boolean) => {
         }
       });
       const data: EventsOnThisDay = await response.json();
-      setBirthdayData(data.births);
+      setBirthdaysData(data.births);
     } catch (error) {
       setError('Failed to fetch birthday data.');
     }
@@ -32,5 +32,5 @@ export const useFetchOnThisDayData = (isButtonVisible: boolean) => {
     }
   }, [isButtonVisible]);
 
-  return { error, isLoading, birthdayData, setBirthdayData };
+  return { error, isLoading, birthdaysData, setBirthdaysData };
 };
