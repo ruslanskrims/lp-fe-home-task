@@ -2,15 +2,11 @@ import './BirthdayItem.scss';
 
 interface BirthdayItemProps {
   text: string;
-  id: number;
 }
 
-function BirthdayItem({ text, id }: BirthdayItemProps) {
+function BirthdayItem({ text }: BirthdayItemProps) {
   return (
-    <li
-      key={id}
-      className="birthday-list__item"
-    >
+    <li className="birthday-list__item">
       {text}
     </li>
   );

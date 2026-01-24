@@ -32,5 +32,5 @@ export const useFetchOnThisDayData = (isButtonVisible: boolean) => {
     }
   }, [isButtonVisible]);
 
-  return { error, isLoading, birthdayData };
+  return { error, isLoading, birthdayData, setBirthdayData };
 };

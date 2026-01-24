@@ -1,14 +1,22 @@
-import { useState } from 'react';
 import { GeneralInfo } from './types';
+import { useBirthdayContext } from './context/BirthdayContext';
 import LoadingSpinner from '../../shared/LoadingSpinner/LoadingSpinner';
 import BirthdayItem from './BirthdayItem';
-import { useFetchOnThisDayData } from './hooks/useFetchOnThisDayData';
 import Button from '../../components/Button/Button';
+import SortButton from '../../components/SortButton/SortButton';
 import './BirthdayList.scss';
 
 function BirthdayList() {
-  const [isButtonVisible, setIsButtonVisible] = useState(true);
-  const { isLoading, birthdayData, error } = useFetchOnThisDayData(isButtonVisible);
+  const {
+    birthdaysData,
+    isLoading,
+    error,
+    isButtonVisible,
+    sortOrder,
+    setIsButtonVisible,
+    handleToggleSort
+  } = useBirthdayContext();
+
   return (
     <div className="container birthday-list__container">
       {isButtonVisible ? (
@@ -22,14 +30,20 @@ function BirthdayList() {
           color="#407ff3"
         />
       ) : (
-        <ul className="birthday-list__items">
-          {birthdayData?.map((generalInfo: GeneralInfo, index: number) => (
-            <BirthdayItem
-              id={index}
-              text={generalInfo?.text}
-            />
-          ))}
-        </ul>
+        <div>
+          <SortButton
+            onToggle={handleToggleSort}
+            sortedBy={sortOrder[1]}
+          />
+          <ul className="birthday-list__items">
+            {birthdaysData?.map((generalInfo: GeneralInfo, index: number) => (
+              <BirthdayItem
+                key={index}
+                text={generalInfo?.text}
+              />
+            ))}
+          </ul>
+        </div>
       )}
     </div>
   );

@@ -3,13 +3,18 @@ export interface EventsOnThisDay {
   births: GeneralInfo[];
   deaths: GeneralInfo[];
   events: GeneralInfo[];
-  holidays: GeneralInfo[];
+  holidays: HolidayInfo[];
 }
 
 export interface GeneralInfo {
   text: string;
   pages: Article[];
-  year?: number;
+  year: number;
+}
+
+export interface HolidayInfo {
+  text: string;
+  pages: Article[];
 }
 
 export interface ArticleURL {
