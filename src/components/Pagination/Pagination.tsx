@@ -1,33 +1,23 @@
+import { useBirthdayContext } from '../../features/birthdays/context/BirthdayContext';
 import './Pagination.scss';
 
-interface PaginationProps {
-  activePageNumber: number;
-  onPageChange: (pageNumber: number) => void;
-  onHandleNextPage: () => void;
-  onHandlePreviousPage: () => void;
-  totalPagesNumber: number;
-}
+function Pagination() {
+  const { activePageNumber, navigateToPage, totalPageNumber } = useBirthdayContext();
 
-function Pagination({
-  activePageNumber,
-  onPageChange,
-  onHandleNextPage,
-  onHandlePreviousPage,
-  totalPagesNumber
-}: PaginationProps) {
-  const pageNumbers = [...Array(totalPagesNumber).keys()].map(num => num + 1);
+  const pageNumbers = [...Array(totalPageNumber).keys()].map(num => num + 1);
   return (
     <div className="pagination">
       <button
         className="pagination__button"
-        onClick={() => onHandlePreviousPage()}
+        onClick={() => navigateToPage(activePageNumber - 1)}
+        disabled={activePageNumber === 1}
       >
         Previous
       </button>
       {pageNumbers.map(num => (
         <button
           key={num}
-          onClick={() => onPageChange(num)}
+          onClick={() => navigateToPage(num)}
           className={
             activePageNumber === num
               ? 'pagination__button pagination__button--active'
@@ -39,7 +29,8 @@ function Pagination({
       ))}
       <button
         className="pagination__button"
-        onClick={() => onHandleNextPage()}
+        onClick={() => navigateToPage(activePageNumber + 1)}
+        disabled={activePageNumber === totalPageNumber}
       >
         Next
       </button>

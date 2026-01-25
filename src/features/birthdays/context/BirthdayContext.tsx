@@ -1,6 +1,7 @@
 import { createContext, useContext, useState, ReactNode, useEffect } from 'react';
-import { GeneralInfo } from '../types';
 import { useFetchOnThisDayData } from '../hooks/useFetchOnThisDayData';
+import { usePagination } from '../hooks/usePagination';
+import { GeneralInfo } from '../types';
 
 type BirthdayContextType = {
   birthdaysData: GeneralInfo[];
@@ -10,6 +11,11 @@ type BirthdayContextType = {
   handleToggleSort: () => void;
   setError: (error: string | null) => void;
   fetchData: () => void;
+  navigateToPage: (pageNumber: number) => void;
+  paginatedData: GeneralInfo[];
+  activePageNumber: number;
+  setActivePageNumber: (pageNumber: number) => void;
+  totalPageNumber: number;
 };
 
 export const BirthdayContext = createContext<BirthdayContextType | undefined>(undefined);
@@ -18,6 +24,8 @@ export function BirthdayProvider({ children }: { children: ReactNode }) {
   const [sortedBy, setSortedBy] = useState<[keyof GeneralInfo, 'asc' | 'desc']>(['year', 'desc']);
   const { isLoading, birthdaysData, error, setBirthdaysData, setError, fetchData } =
     useFetchOnThisDayData();
+  const { activePageNumber, setActivePageNumber, totalPageNumber, paginatedData, navigateToPage } =
+    usePagination(birthdaysData, 15);
 
   useEffect(() => {
     if (birthdaysData.length > 0) {
@@ -50,7 +58,12 @@ export function BirthdayProvider({ children }: { children: ReactNode }) {
         sortOrder: sortedBy,
         handleToggleSort,
         setError,
-        fetchData
+        fetchData,
+        navigateToPage,
+        paginatedData,
+        activePageNumber,
+        setActivePageNumber,
+        totalPageNumber
       }}
     >
       {children}
