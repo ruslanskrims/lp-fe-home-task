@@ -6,19 +6,18 @@ type BirthdayContextType = {
   birthdaysData: GeneralInfo[];
   isLoading: boolean;
   error: string | null;
-  isButtonVisible: boolean;
   sortOrder: [keyof GeneralInfo, 'asc' | 'desc'];
-  setIsButtonVisible: (isVisible: boolean) => void;
   handleToggleSort: () => void;
+  setError: (error: string | null) => void;
+  fetchData: () => void;
 };
 
 export const BirthdayContext = createContext<BirthdayContextType | undefined>(undefined);
 
 export function BirthdayProvider({ children }: { children: ReactNode }) {
-  const [isButtonVisible, setIsButtonVisible] = useState(true);
   const [sortedBy, setSortedBy] = useState<[keyof GeneralInfo, 'asc' | 'desc']>(['year', 'desc']);
-  const { isLoading, birthdaysData, error, setBirthdaysData } =
-    useFetchOnThisDayData(isButtonVisible);
+  const { isLoading, birthdaysData, error, setBirthdaysData, setError, fetchData } =
+    useFetchOnThisDayData();
 
   useEffect(() => {
     if (birthdaysData.length > 0) {
@@ -49,9 +48,9 @@ export function BirthdayProvider({ children }: { children: ReactNode }) {
         isLoading,
         error,
         sortOrder: sortedBy,
-        isButtonVisible,
-        setIsButtonVisible,
-        handleToggleSort
+        handleToggleSort,
+        setError,
+        fetchData
       }}
     >
       {children}

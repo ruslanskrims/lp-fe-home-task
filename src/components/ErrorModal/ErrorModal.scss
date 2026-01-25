@@ -1,0 +1,33 @@
+.error-modal {
+  z-index: 10;
+
+  &__content {
+    width: 30em;
+    height: 10rem;
+    position: relative;
+    background-color: #fdeef0;
+    border: 1px solid #d6395b;
+    border-radius: 8px;
+    padding: 2rem;
+    box-shadow: 0 4px 6px rgba(224, 132, 140, 0.1);
+  }
+
+  &__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+  }
+
+  &__title {
+    margin: 0;
+    font-size: 1.5rem;
+    color: #d32f2f;
+  }
+
+  &__message {
+    margin: 0 0 1.5rem;
+    color: #333;
+    line-height: 1.5;
+  }
+}

@@ -5,6 +5,6 @@ import App from './App';
 describe('App', () => {
   it('renders the heading title', () => {
     render(<App />);
-    expect(screen.getByText('LevelPath Home Task')).toBeInTheDocument();
+    expect(screen.getByText('Levelpath Home Task')).toBeInTheDocument();
   });
 });

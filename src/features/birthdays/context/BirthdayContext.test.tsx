@@ -19,7 +19,7 @@ describe('BirthdayContext', () => {
     });
 
     act(() => {
-      result.current.setIsButtonVisible(false);
+      result.current.fetchData();
     });
 
     await waitFor(() => {
@@ -36,7 +36,7 @@ describe('BirthdayContext', () => {
     });
 
     act(() => {
-      result.current.setIsButtonVisible(false);
+      result.current.fetchData();
     });
 
     await waitFor(() => {
@@ -52,5 +52,36 @@ describe('BirthdayContext', () => {
 
     expect(result.current.sortOrder[1]).toBe('asc');
     expect(result.current.birthdaysData[0].year).toBe(2002);
+  });
+
+  it('sorting order should be descending', async () => {
+    const { result } = renderHook(() => useBirthdayContext(), {
+      wrapper: BirthdayProvider
+    });
+
+    act(() => {
+      result.current.fetchData();
+    });
+
+    await waitFor(() => {
+      expect(result.current.birthdaysData.length).toBeGreaterThan(0);
+    });
+
+    expect(result.current.birthdaysData[0].year).toBe(2009);
+    expect(result.current.sortOrder[1]).toBe('desc');
+
+    act(() => {
+      result.current.handleToggleSort();
+    });
+
+    expect(result.current.sortOrder[1]).toBe('asc');
+    expect(result.current.birthdaysData[0].year).toBe(2002);
+
+    act(() => {
+      result.current.handleToggleSort();
+    });
+
+    expect(result.current.sortOrder[1]).toBe('desc');
+    expect(result.current.birthdaysData[0].year).toBe(2009);
   });
 });
