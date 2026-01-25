@@ -1,0 +1,23 @@
+.pagination {
+  margin-bottom: 3rem;
+  display: flex;
+  justify-content: center;
+  font-family: 'Golos Text', sans-serif;
+  flex-wrap: wrap;
+  gap: 0.3rem;
+
+  &__button {
+    border: none;
+    margin: 0 5px;
+    cursor: pointer;
+    border-radius: 0.3rem;
+    background: #fafbfd;
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.1);
+    padding: 0.5rem 1rem;
+
+    &--active {
+      background: #59b5f1;
+      color: #fff;
+    }
+  }
+}
