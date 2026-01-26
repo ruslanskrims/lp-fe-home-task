@@ -1,7 +1,6 @@
-import { createContext, useContext, useState, ReactNode, useEffect } from 'react';
-import { useFetchOnThisDayData } from '../hooks/useFetchOnThisDayData';
-import { usePagination } from '../hooks/usePagination';
-import { GeneralInfo } from '../types';
+import { createContext, useContext, useState, ReactNode, useEffect, useMemo } from 'react';
+import { GeneralInfo } from '../../features/birthdays/types';
+import { useFetchOnThisDayData } from '../../shared/hooks/useFetchOnThisDayData';
 
 type BirthdayContextType = {
   birthdaysData: GeneralInfo[];
@@ -11,11 +10,6 @@ type BirthdayContextType = {
   handleToggleSort: () => void;
   setError: (error: string | null) => void;
   fetchData: () => void;
-  navigateToPage: (pageNumber: number) => void;
-  paginatedData: GeneralInfo[];
-  activePageNumber: number;
-  setActivePageNumber: (pageNumber: number) => void;
-  totalPageNumber: number;
 };
 
 export const BirthdayContext = createContext<BirthdayContextType | undefined>(undefined);
@@ -24,10 +18,8 @@ export function BirthdayProvider({ children }: { children: ReactNode }) {
   const [sortedBy, setSortedBy] = useState<[keyof GeneralInfo, 'asc' | 'desc']>(['year', 'desc']);
   const { isLoading, birthdaysData, error, setBirthdaysData, setError, fetchData } =
     useFetchOnThisDayData();
-  const { activePageNumber, setActivePageNumber, totalPageNumber, paginatedData, navigateToPage } =
-    usePagination(birthdaysData, 15);
 
-  useEffect(() => {
+  useMemo(() => {
     if (birthdaysData.length > 0) {
       setBirthdaysData(prevBirthdaysData =>
         [...prevBirthdaysData].sort((a, b) => {
@@ -58,12 +50,7 @@ export function BirthdayProvider({ children }: { children: ReactNode }) {
         sortOrder: sortedBy,
         handleToggleSort,
         setError,
-        fetchData,
-        navigateToPage,
-        paginatedData,
-        activePageNumber,
-        setActivePageNumber,
-        totalPageNumber
+        fetchData
       }}
     >
       {children}
@@ -74,7 +61,7 @@ export function BirthdayProvider({ children }: { children: ReactNode }) {
 export function useBirthdayContext() {
   const context = useContext(BirthdayContext);
   if (!context) {
-    throw new Error('useBirthdayContext must be used within a BirthdayProvider');
+    throw new Error('useBirthdayContext must be used within a BirthdayContext');
   }
   return context;
 }

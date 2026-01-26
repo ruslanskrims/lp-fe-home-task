@@ -1,9 +1,9 @@
 import { beforeEach, describe, expect, it, vi } from 'vitest';
 import { renderHook, waitFor, act } from '@testing-library/react';
-import { mockBirthdayData } from '../../../mocks/birthdays/mockBirthdayData';
-import { BirthdayProvider } from '../context/BirthdayContext';
 import { useFetchOnThisDayData } from './useFetchOnThisDayData';
-import { HttpStatusCode } from '../../../shared/enums/HttpStatusCode.enum';
+import { HttpStatusCode } from '../enums/HttpStatusCode.enum';
+import { mockBirthdayData } from '../../features/birthdays/mocks/mockBirthdayData';
+import { BirthdayProvider } from '../../context/birthday/BirthdayContext';
 
 describe('useFetchOnThisDayData', () => {
   beforeEach(() => {
@@ -59,7 +59,7 @@ describe('useFetchOnThisDayData', () => {
       expect(result.current.birthdaysData.length).toBeGreaterThan(0);
     });
 
-    expect(result.current.birthdaysData.length).toBe(4);
+    expect(result.current.birthdaysData.length).toBe(8);
     expect(result.current.error).toBeNull();
     expect(globalThis.fetch).toHaveBeenCalledTimes(1);
   });

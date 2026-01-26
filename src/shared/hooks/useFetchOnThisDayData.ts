@@ -1,6 +1,6 @@
 import { useState } from 'react';
-import { EventsOnThisDay, GeneralInfo } from '../types';
-import { HttpStatusCode } from '../../../shared/enums/HttpStatusCode.enum';
+import { EventsOnThisDay, GeneralInfo } from '../../features/birthdays/types';
+import { HttpStatusCode } from '../enums/HttpStatusCode.enum';
 
 export const useFetchOnThisDayData = () => {
   const [birthdaysData, setBirthdaysData] = useState<GeneralInfo[]>([]);

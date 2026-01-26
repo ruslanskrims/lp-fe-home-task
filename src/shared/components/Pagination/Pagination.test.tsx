@@ -2,7 +2,7 @@ import { render, screen } from '@testing-library/react';
 import { describe, it, expect, vi } from 'vitest';
 import userEvent from '@testing-library/user-event';
 import Pagination from './Pagination';
-import { BirthdayContext } from '../../features/birthdays/context/BirthdayContext';
+import { PaginationContext } from '../../../context/pagination/PaginationContext';
 
 describe('Pagination', () => {
   const renderPagination = () => {
@@ -12,22 +12,17 @@ describe('Pagination', () => {
       totalPageNumber: 5,
       navigateToPage: mockNavigateToPage,
       birthdaysData: [],
-      isLoading: false,
-      error: null,
-      sortOrder: ['year', 'desc'] as [string, 'asc' | 'desc'],
-      handleToggleSort: vi.fn(),
-      setError: vi.fn(),
-      fetchData: vi.fn(),
       paginatedData: [],
+      showVisiblePages: () => [1, 2, 3, 4, 5],
       setActivePageNumber: vi.fn()
-    } as React.ContextType<typeof BirthdayContext>;
+    } as React.ContextType<typeof PaginationContext>;
 
     const user = userEvent.setup();
 
     render(
-      <BirthdayContext.Provider value={mockContextValue}>
+      <PaginationContext.Provider value={mockContextValue}>
         <Pagination />
-      </BirthdayContext.Provider>
+      </PaginationContext.Provider>
     );
 
     return { mockNavigateToPage, user };

@@ -15,11 +15,11 @@
     height: 1.1rem;
     margin-left: 0.2rem;
     &--asc {
-      background: url('../../assets/icons/sort-desc.svg') center/contain no-repeat;
+      background: url('../../../assets/icons/sort-asc.svg') center/contain no-repeat;
     }
 
     &--desc {
-      background: url('../../assets/icons/sort-asc.svg') center/contain no-repeat;
+      background: url('../../../assets/icons/sort-desc.svg') center/contain no-repeat;
     }
   }
 }

@@ -8,6 +8,7 @@
     align-items: center;
     padding-top: 3rem;
     width: 100%;
+    min-height: 100vh;
   }
 
   &__title {
@@ -25,6 +26,5 @@
     display: flex;
     flex-direction: column;
     gap: 0.3rem;
-    min-height: 50vh;
   }
 }

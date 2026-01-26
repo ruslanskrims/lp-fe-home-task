@@ -1,6 +1,6 @@
 import { renderHook, waitFor, act } from '@testing-library/react';
 import { beforeEach, describe, expect, it, vi } from 'vitest';
-import { mockBirthdayData } from '../../../mocks/birthdays/mockBirthdayData';
+import { mockBirthdayData } from '../../features/birthdays/mocks/mockBirthdayData';
 import { BirthdayProvider, useBirthdayContext } from './BirthdayContext';
 
 describe('BirthdayContext', () => {

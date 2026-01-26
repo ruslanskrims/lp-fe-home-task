@@ -1,7 +1,8 @@
 import { render, screen } from '@testing-library/react';
 import { describe, expect, it, vi, beforeEach, afterEach } from 'vitest';
-import { BirthdayProvider } from '../../features/birthdays/context/BirthdayContext';
 import ErrorModal from './ErrorModal';
+import { BirthdayProvider } from '../../../context/birthday/BirthdayContext';
+import { PaginationProvider } from '../../../context/pagination/PaginationContext';
 
 describe('ErrorModal', () => {
   beforeEach(() => {
@@ -19,10 +20,12 @@ describe('ErrorModal', () => {
   const renderComponent = (errMock: string | null, setErrMock: (error: string | null) => void) => {
     return render(
       <BirthdayProvider>
-        <ErrorModal
-          error={errMock}
-          setError={setErrMock}
-        />
+        <PaginationProvider>
+          <ErrorModal
+            error={errMock}
+            setError={setErrMock}
+          />
+        </PaginationProvider>
       </BirthdayProvider>
     );
   };

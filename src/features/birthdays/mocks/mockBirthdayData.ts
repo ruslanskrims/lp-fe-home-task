@@ -1,4 +1,4 @@
-import { GeneralInfo } from '../../features/birthdays/types';
+import { GeneralInfo } from '../types';
 
 export const mockBirthdayData = {
   births: [
@@ -21,6 +21,26 @@ export const mockBirthdayData = {
       text: 'Gvido Hugo, Italian engineer',
       pages: [],
       year: 2001
+    },
+    {
+      text: 'Gvido Hugo1, Italian engineer',
+      pages: [],
+      year: 2001
+    },
+    {
+      text: 'Gvido Hugo2, Italian engineer',
+      pages: [],
+      year: 2002
+    },
+    {
+      text: 'Gvido Hugo3, Italian engineer',
+      pages: [],
+      year: 2002
+    },
+    {
+      text: 'Gvido Hugo4, Italian engineer',
+      pages: [],
+      year: 2003
     }
   ] as GeneralInfo[]
 };
