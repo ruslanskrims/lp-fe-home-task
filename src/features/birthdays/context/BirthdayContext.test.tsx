@@ -51,7 +51,7 @@ describe('BirthdayContext', () => {
     });
 
     expect(result.current.sortOrder[1]).toBe('asc');
-    expect(result.current.birthdaysData[0].year).toBe(2002);
+    expect(result.current.birthdaysData[0].year).toBe(2001);
   });
 
   it('sorting order should be descending', async () => {
@@ -75,7 +75,7 @@ describe('BirthdayContext', () => {
     });
 
     expect(result.current.sortOrder[1]).toBe('asc');
-    expect(result.current.birthdaysData[0].year).toBe(2002);
+    expect(result.current.birthdaysData[0].year).toBe(2001);
 
     act(() => {
       result.current.handleToggleSort();

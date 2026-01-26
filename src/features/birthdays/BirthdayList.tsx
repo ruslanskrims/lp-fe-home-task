@@ -2,11 +2,11 @@ import { GeneralInfo } from './types';
 import { useBirthdayContext } from './context/BirthdayContext';
 import LoadingSpinner from '../../shared/LoadingSpinner/LoadingSpinner';
 import BirthdayItem from './BirthdayItem';
-import Button from '../../components/Button/Button';
+import Button from '../../shared/Button/Button';
 import SortButton from '../../components/SortButton/SortButton';
 import ErrorModal from '../../components/ErrorModal/ErrorModal';
-import './BirthdayList.scss';
 import Pagination from '../../components/Pagination/Pagination';
+import './BirthdayList.scss';
 
 function BirthdayList() {
   const {
@@ -33,12 +33,13 @@ function BirthdayList() {
       )}
       <Button
         onClick={fetchData}
-        text={"Get today's birthday list"}
+        text="Get today's birthday list"
         disabled={isLoading}
+        className="button"
       />
       {isLoading ? (
         <LoadingSpinner
-          text={'Loading...'}
+          text="Loading..."
           color="#407ff3"
         />
       ) : (

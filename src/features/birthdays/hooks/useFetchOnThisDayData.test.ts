@@ -59,7 +59,7 @@ describe('useFetchOnThisDayData', () => {
       expect(result.current.birthdaysData.length).toBeGreaterThan(0);
     });
 
-    expect(result.current.birthdaysData.length).toBe(3);
+    expect(result.current.birthdaysData.length).toBe(4);
     expect(result.current.error).toBeNull();
     expect(globalThis.fetch).toHaveBeenCalledTimes(1);
   });

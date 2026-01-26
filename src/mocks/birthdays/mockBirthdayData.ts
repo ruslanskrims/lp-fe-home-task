@@ -1,3 +1,5 @@
+import { GeneralInfo } from '../../features/birthdays/types';
+
 export const mockBirthdayData = {
   births: [
     {
@@ -14,6 +16,11 @@ export const mockBirthdayData = {
       text: 'Joško Gvardiol, Croatian footballer',
       pages: [],
       year: 2002
+    },
+    {
+      text: 'Gvido Hugo, Italian engineer',
+      pages: [],
+      year: 2001
     }
-  ]
+  ] as GeneralInfo[]
 };

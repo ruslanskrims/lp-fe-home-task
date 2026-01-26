@@ -1,3 +1,4 @@
+import Button from '../../shared/Button/Button';
 import './SortButton.scss';
 
 interface SortButtonProps {
@@ -7,13 +8,13 @@ interface SortButtonProps {
 
 function SortButton({ onToggle, sortedBy }: SortButtonProps) {
   return (
-    <button
+    <Button
       className="sort-button"
       onClick={onToggle}
+      text="Sort"
     >
-      Sort
       <span className={`sort-button__icon sort-button__icon--${sortedBy}`} />
-    </button>
+    </Button>
   );
 }
 

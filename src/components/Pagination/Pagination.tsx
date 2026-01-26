@@ -1,4 +1,5 @@
 import { useBirthdayContext } from '../../features/birthdays/context/BirthdayContext';
+import Button from '../../shared/Button/Button';
 import './Pagination.scss';
 
 function Pagination() {
@@ -7,33 +8,29 @@ function Pagination() {
   const pageNumbers = [...Array(totalPageNumber).keys()].map(num => num + 1);
   return (
     <div className="pagination">
-      <button
+      <Button
+        text="Previous"
         className="pagination__button"
         onClick={() => navigateToPage(activePageNumber - 1)}
         disabled={activePageNumber === 1}
-      >
-        Previous
-      </button>
+      />
       {pageNumbers.map(num => (
-        <button
-          key={num}
-          onClick={() => navigateToPage(num)}
+        <Button
+          text={`${num}`}
           className={
             activePageNumber === num
               ? 'pagination__button pagination__button--active'
               : 'pagination__button'
           }
-        >
-          {num}
-        </button>
+          onClick={() => navigateToPage(num)}
+        />
       ))}
-      <button
+      <Button
+        text="Next"
         className="pagination__button"
         onClick={() => navigateToPage(activePageNumber + 1)}
         disabled={activePageNumber === totalPageNumber}
-      >
-        Next
-      </button>
+      />
     </div>
   );
 }
