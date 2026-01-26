@@ -1,4 +1,4 @@
-import { createContext, useContext, useState, ReactNode, useEffect, useMemo } from 'react';
+import { createContext, useContext, useState, ReactNode, useMemo } from 'react';
 import { GeneralInfo } from '../../features/birthdays/types';
 import { useFetchOnThisDayData } from '../../shared/hooks/useFetchOnThisDayData';
 
@@ -16,22 +16,13 @@ export const BirthdayContext = createContext<BirthdayContextType | undefined>(un
 
 export function BirthdayProvider({ children }: { children: ReactNode }) {
   const [sortedBy, setSortedBy] = useState<[keyof GeneralInfo, 'asc' | 'desc']>(['year', 'desc']);
-  const { isLoading, birthdaysData, error, setBirthdaysData, setError, fetchData } =
-    useFetchOnThisDayData();
+  const { isLoading, birthdaysData, error, setError, fetchData } = useFetchOnThisDayData();
 
-  useMemo(() => {
-    if (birthdaysData.length > 0) {
-      setBirthdaysData(prevBirthdaysData =>
-        [...prevBirthdaysData].sort((a, b) => {
-          if (sortedBy[1] === 'asc') {
-            return a.year - b.year;
-          } else {
-            return b.year - a.year;
-          }
-        })
-      );
-    }
-  }, [sortedBy, birthdaysData.length]);
+  const sortedBirthdaysData = useMemo(() => {
+    return [...birthdaysData].sort((a, b) =>
+      sortedBy[1] === 'asc' ? a.year - b.year : b.year - a.year
+    );
+  }, [birthdaysData, sortedBy]);
 
   const handleToggleSort = () => {
     if (sortedBy[1] === 'asc') {
@@ -44,7 +35,7 @@ export function BirthdayProvider({ children }: { children: ReactNode }) {
   return (
     <BirthdayContext.Provider
       value={{
-        birthdaysData,
+        birthdaysData: sortedBirthdaysData,
         isLoading,
         error,
         sortOrder: sortedBy,
