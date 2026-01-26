@@ -5,7 +5,7 @@ import Pagination from './Pagination';
 import { BirthdayContext } from '../../features/birthdays/context/BirthdayContext';
 
 describe('Pagination', () => {
-  it('calls navigateToPage when page number button is clicked', async () => {
+  const renderPagination = () => {
     const mockNavigateToPage = vi.fn();
     const mockContextValue = {
       activePageNumber: 2,
@@ -30,9 +30,33 @@ describe('Pagination', () => {
       </BirthdayContext.Provider>
     );
 
-    const pageButton = screen.getByRole('button', { name: '3' });
+    return { mockNavigateToPage, user };
+  };
+
+  it('calls navigateToPage when page number button is clicked', async () => {
+    const { mockNavigateToPage, user } = renderPagination();
+
+    const pageButton = screen.getByRole('button', { name: '4' });
+    await user.click(pageButton);
+
+    expect(mockNavigateToPage).toHaveBeenCalledWith(4);
+  });
+
+  it('calls navigateToPage when next page number button is clicked', async () => {
+    const { mockNavigateToPage, user } = renderPagination();
+
+    const pageButton = screen.getByRole('button', { name: 'Next' });
     await user.click(pageButton);
 
     expect(mockNavigateToPage).toHaveBeenCalledWith(3);
+  });
+
+  it('calls navigateToPage when previous page number button is clicked', async () => {
+    const { mockNavigateToPage, user } = renderPagination();
+
+    const pageButton = screen.getByRole('button', { name: 'Previous' });
+    await user.click(pageButton);
+
+    expect(mockNavigateToPage).toHaveBeenCalledWith(1);
   });
 });
