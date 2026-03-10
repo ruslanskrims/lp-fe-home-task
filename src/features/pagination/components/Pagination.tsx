@@ -1,5 +1,5 @@
 import { usePaginationContext } from '../../../context/pagination/PaginationContext';
-import Button from '../Button/Button';
+import Button from '../../../shared/components/Button/Button';
 import './Pagination.scss';
 
 function Pagination() {

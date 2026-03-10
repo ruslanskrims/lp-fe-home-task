@@ -2,9 +2,9 @@ import { describe, it, expect, vi, beforeEach } from 'vitest';
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import BirthdayList from './BirthdayList';
-import { mockBirthdayData } from './mocks/mockBirthdayData';
-import { BirthdayProvider } from '../../context/birthday/BirthdayContext';
-import { PaginationProvider } from '../../context/pagination/PaginationContext';
+import { mockBirthdayData } from '../mocks/mockBirthdayData';
+import { BirthdayProvider } from '../context/BirthdayContext';
+import { PaginationProvider } from '../../pagination/context/PaginationContext';
 
 describe('BirthdayList', () => {
   beforeEach(() => {

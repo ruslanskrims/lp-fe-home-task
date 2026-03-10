@@ -1,7 +1,7 @@
-import { BirthdayProvider } from './context/birthday/BirthdayContext';
-import { PaginationProvider } from './context/pagination/PaginationContext';
+import { BirthdayProvider } from './features/birthdays/context/BirthdayContext';
+import { PaginationProvider } from './features/pagination/context/PaginationContext';
 import Header from './shared/components/Header/Header';
-import BirthdayList from './features/birthdays/BirthdayList';
+import BirthdayList from './features/birthdays/components/BirthdayList';
 import './App.css';
 
 function App() {

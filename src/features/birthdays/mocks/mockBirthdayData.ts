@@ -1,4 +1,4 @@
-import { GeneralInfo } from '../types';
+import { GeneralInfo } from '../types/types';
 
 export const mockBirthdayData = {
   births: [

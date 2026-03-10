@@ -1,6 +1,6 @@
 import { createContext, useContext, useState, ReactNode, useMemo } from 'react';
-import { GeneralInfo } from '../../features/birthdays/types';
-import { useFetchOnThisDayData } from '../../shared/hooks/useFetchOnThisDayData';
+import { GeneralInfo } from '../types/types';
+import { useFetchOnThisDayData } from '../hooks/useFetchOnThisDayData';
 
 type BirthdayContextType = {
   birthdaysData: GeneralInfo[];

@@ -1,12 +1,12 @@
-import { GeneralInfo } from './types';
+import Button from '../../../shared/components/Button/Button';
+import ErrorModal from '../../../shared/components/ErrorModal/ErrorModal';
+import LoadingSpinner from '../../../shared/components/LoadingSpinner/LoadingSpinner';
+import SortButton from '../../../shared/components/SortButton/SortButton';
+import Pagination from '../../pagination/components/Pagination';
+import { usePaginationContext } from '../../pagination/context/PaginationContext';
+import { useBirthdayContext } from '../context/BirthdayContext';
+import { GeneralInfo } from '../types/types';
 import BirthdayItem from './BirthdayItem';
-import ErrorModal from '../../shared/components/ErrorModal/ErrorModal';
-import Button from '../../shared/components/Button/Button';
-import LoadingSpinner from '../../shared/components/LoadingSpinner/LoadingSpinner';
-import SortButton from '../../shared/components/SortButton/SortButton';
-import Pagination from '../../shared/components/Pagination/Pagination';
-import { useBirthdayContext } from '../../context/birthday/BirthdayContext';
-import { usePaginationContext } from '../../context/pagination/PaginationContext';
 import './BirthdayList.scss';
 
 function BirthdayList() {

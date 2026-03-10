@@ -1,7 +1,7 @@
 import { createContext, useContext, ReactNode } from 'react';
-import { GeneralInfo } from '../../features/birthdays/types';
-import { usePagination } from '../../shared/hooks/usePagination';
-import { useBirthdayContext } from '../birthday/BirthdayContext';
+import { GeneralInfo } from '../../birthdays/types/types';
+import { useBirthdayContext } from '../../birthdays/context/BirthdayContext';
+import { usePagination } from '../../../shared/hooks/usePagination';
 
 type PaginationContextType = {
   navigateToPage: (pageNumber: number) => void;

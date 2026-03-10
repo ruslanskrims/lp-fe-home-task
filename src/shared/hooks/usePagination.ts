@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { GeneralInfo } from '../../features/birthdays/types';
+import { GeneralInfo } from '../../features/birthdays/types/types';
 
 export const usePagination = (birthdaysData: GeneralInfo[], itemsPerPage: number) => {
   const [activePageNumber, setActivePageNumber] = useState(1);
